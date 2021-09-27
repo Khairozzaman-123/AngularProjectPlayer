@@ -1,0 +1,22 @@
+
+<form class="form-container" [formGroup]="sportForm" (submit)="insert()">
+  <div class="f-w">
+    <h2>Create New Sport</h2>
+  </div>
+  <mat-form-field class="f-w">
+    <mat-label>Sport Name</mat-label>
+    <input matInput formControlName="sportName" required>
+    <mat-error *ngIf="f.sportName.touched && f.sportName.errors">Sport Name Required!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="f-w">
+    <mat-label>popularity</mat-label>
+    <input matInput formControlName="popularity" required>
+    <mat-error *ngIf="f.popularity.touched && f.popularity.errors">Popularity Required!</mat-error>
+  </mat-form-field>
+  <div class="f-w">
+    <button [disabled]="sportForm.invalid" mat-raised-button type="submit" color="accent"><mat-icon>save_alt</mat-icon>Save</button>
+  </div>
+  <div class="f-w">
+    <a mat-flat-button [routerLink]="['/sport']">Back To List</a>
+  </div>
+</form>

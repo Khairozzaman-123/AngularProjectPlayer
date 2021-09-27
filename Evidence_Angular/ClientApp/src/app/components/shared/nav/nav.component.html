@@ -1,0 +1,16 @@
+<div class="main-container">
+  <mat-toolbar color="accent" class="main-toolbar">
+    <mat-toolbar-row>
+      <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>Angular Project</h1>
+      <a mat-button [routerLink]="['/home']">Home</a>
+      <span class="menu-spacer"></span>
+      <a mat-button [routerLink]="['/sport']">Sport</a>
+      <a mat-button [routerLink]="['/player']">Player</a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</div>
+

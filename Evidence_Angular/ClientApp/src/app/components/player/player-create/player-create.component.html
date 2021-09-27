@@ -1,0 +1,59 @@
+<form class="form-container" [formGroup]="playerForm" (submit)="insert()">
+  <div class="f-w">
+    <h3>Create new Player</h3>
+  </div>
+  <mat-form-field class="f-w">
+    <mat-label>Player name</mat-label>
+    <input matInput formControlName="playerName">
+    <mat-error *ngIf="f.playerName.touched && f.playerName.errors?.required">Player name required</mat-error>
+    <mat-error *ngIf="f.playerName.touched && f.playerName.errors?.maxlength">Player name can be upto 30 cahracters</mat-error>
+
+  </mat-form-field>
+  <mat-form-field class="f-w">
+    <mat-label>Player Category</mat-label>
+    <input matInput formControlName="playerCategory">
+    <mat-error *ngIf="f.playerCategory.touched && f.playerCategory.errors">Category required</mat-error>
+
+  </mat-form-field>
+  <mat-form-field class="f-w">
+    <mat-label>Join date</mat-label>
+    <input matInput formControlName="joinDate" [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="f.joinDate.touched && f.joinDate.errors">Join date required</mat-error>
+  </mat-form-field>
+  <div class="mat-form-field f-w">
+    <mat-label style="margin-right:16px">Gender</mat-label>
+    <mat-radio-group formControlName="gender" aria-label="Select an option">
+      <mat-radio-button value="Male">Male</mat-radio-button>
+      <mat-radio-button value="Female">Female</mat-radio-button>
+    </mat-radio-group>
+    <mat-error *ngIf="f.gender.touched && f.gender.errors">Gender required</mat-error>
+  </div>
+  <mat-form-field appearance="standard" class="f-w">
+    <mat-label>Picture</mat-label>
+    <ngx-mat-file-input formControlName="picture" [accept]="'image/*'" (change)="onChange($event)"></ngx-mat-file-input>
+    <mat-icon matSuffix>insert_photo</mat-icon>
+    <mat-error *ngIf="f.picture.touched && f.picture.errors">Picture required</mat-error>
+  </mat-form-field>
+  <mat-form-field class="f-w">
+    <mat-label>Sport Name</mat-label>
+    <mat-select formControlName="sportId">
+      <mat-option value="">None</mat-option>
+      <mat-option *ngFor="let z of sports" [value]="z.sportId">
+        {{z.sportName}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="f.sportId.touched && f.sportId.errors">Sport name required</mat-error>
+
+  </mat-form-field>
+
+
+  <div class="f-w">
+    <button [disabled]="playerForm.invalid" mat-raised-button type="submit" color="accent"><mat-icon>save_alt</mat-icon> Save</button>
+  </div>
+  <div class="f-w">
+    <a mat-flat-button [routerLink]="['/player']">Back to list</a>
+  </div>
+</form>
+
